@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ID Card Generator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .id-card {
+        border: 1px solid #000;
+        padding: 20px;
+        height: 350px;
+        width: 250px;
+        text-align: center;
+        margin-top: 20px;
+        display: none;
+      }
+      img {
+        border-radius: 50px;
+        height: 100px;
+        width: 100px;
+      }
+      div {
+        background-image: url(./backimage.jpg);
+      }
+    </style>
+  </head>
+  <body>
+    <form id="idCardForm">
+      <fieldset>
+        <legend><h2>ID Card Generator</h2></legend>
+        <label for="name">Name:</label><br />
+        <input
+          type="text"
+          id="name"
+          required
+          placeholder="Ex:John"
+        /><br /><br />
+
+        <label for="dateofbirth">Date of Birth:</label><br />
+        <input
+          type="text"
+          id="dateofbirth"
+          required
+          placeholder="DD/MM/YYYY"
+        /><br /><br />
+
+        <label for="idNumber">ID Number:</label><br />
+        <input type="number" id="idNumber" pattern="[0-9]{10}" required /><br /><br />
+
+        <label for="ContactNumber">Contact Number:</label><br />
+        <input type="number" id="ContactNumber" pattern="[0-9]{10}"  required /><br /><br />
+
+        <label for="designation">Designation:</label><br />
+        <input type="text" id="designation" required /><br /><br />
+
+        <label for="imgInp">Passport Photo:</label><br />
+        <input accept="image/*" type="file" id="imgInp" /><br /><br />
+
+        <input type="reset" />
+
+        <button type="submit">Generate ID Card</button>
+      </fieldset>
+    </form>
+
+    <div class="id-card" id="idCard">
+      <h3>ID Card</h3>
+      <div id="image"></div>
+      <img id="blah" src="#" alt="your image" />
+      <p><strong>Name:</strong> <span id="cardName"></span></p>
+      <p><strong>Date Of Birth:</strong><span id="carddateofbirth"></span></p>
+      <p><strong>ID Number:</strong> <span id="cardIdNumber"></span></p>
+      <p><strong>Contact Number:</strong> <span id="cardContactNumber"></span></p>
+      <p><strong>Designation:</strong> <span id="cardDesignation"></span></p>
+    </div>
+
+    <script>
+      document
+        .getElementById("idCardForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const [file] = imgInp.files;
+          if (file) {
+            blah.src = URL.createObjectURL(file);
+          }
+
+          document.getElementById("image");
+          document.getElementById("cardName").textContent =
+            document.getElementById("name").value;
+          document.getElementById("carddateofbirth").textContent =
+            document.getElementById("dateofbirth").value;
+          document.getElementById("cardIdNumber").textContent =
+            document.getElementById("idNumber").value;
+          document.getElementById("cardContactNumber").textContent =
+            document.getElementById("ContactNumber").value;
+          document.getElementById("cardDesignation").textContent =
+            document.getElementById("designation").value;
+          document.getElementById("idCard").style.display = "block";
+        });
+    </script>
+  </body>
+</html>
